@@ -8,6 +8,7 @@ import address.Address;
 
 public class TokenContract {
 
+	
 	// Atributos
 	
 	private String name = null;
@@ -171,13 +172,14 @@ public class TokenContract {
 		}
 		
 	}
+	
+	
 	@Override
 	public String toString() {
 		
 		return "\n" + "name = " + this.getName() + "\n" + "symbol = " + this.symbol() + "\n" + "totalSupply = " + this.totalSupply() + "\n" + "owner PK = " + this.getOwnerPK().hashCode();
 		
 	}
-	
 	
 	
 }

@@ -10,6 +10,7 @@ import tokenContract.TokenContract;
 
 public class TokenContractTest {
 
+	
 	 @Test
 	 public void constructortest() {
 		 
@@ -36,6 +37,7 @@ public class TokenContractTest {
 		 assertEquals(name, tk.getName());
 		 
 	 }
+	 
 	 
 	 @Test
 	 public void symbolTest() {
@@ -79,14 +81,7 @@ public class TokenContractTest {
 		 assertEquals(ad.getPK(), tk.getOwnerPK());
 		 
 	 }
-	 
-	/* @Test
-	 public void getBalancesTest() {
-		 
-		 Address ad = new Address();
-		 TokenContract tk = new TokenContract(ad); 
-	 }*/
-	 
+
 	 
 	 @Test
 	 public void addOwnerTest() {
@@ -102,6 +97,7 @@ public class TokenContractTest {
 		 
 	 }
 		
+	 
 	 @Test
 	 public void numOwnersTest() {
 		 
@@ -125,6 +121,7 @@ public class TokenContractTest {
 		 
 	 }
 	 
+	 
 	 @Test
 	 public void balanceOfTest() {
 		 
@@ -147,6 +144,7 @@ public class TokenContractTest {
 	 @Test
 	 public void transferTest() {
 		 
+		 
 		 Address direccionO = new Address();
 		 direccionO.generateKeyPair();
 		 Address direccionD = new Address();
@@ -161,10 +159,13 @@ public class TokenContractTest {
 		 
 		 assertEquals(tokens, contract.getBalances().get(contract.getOwnerPK()) , 0.0);
 		 
+		 
 	 }
+	 
 	 
 	 @Test
 	 public void transferTest1() {
+		 
 		 
 		 Address direccionO = new Address();
 		 direccionO.generateKeyPair();
@@ -179,6 +180,7 @@ public class TokenContractTest {
 		 contract.transfer(direccionO.getPK(), direccionD.getPK(), tokens);
 		 
 		 assertEquals(tokens, contract.getBalances().get(contract.getOwnerPK()) , 0.0);
+		 
 		 
 	 }
 	 

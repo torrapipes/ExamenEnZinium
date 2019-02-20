@@ -65,6 +65,7 @@ public class Address {
 		
 	}
 	
+	
 	// Métodos
 	
 	public void generateKeyPair() {
@@ -82,8 +83,5 @@ public class Address {
 		
 	}
 	
-	
-	
-	
-	
+		
 }
