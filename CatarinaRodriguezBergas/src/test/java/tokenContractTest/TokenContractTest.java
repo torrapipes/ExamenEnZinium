@@ -36,7 +36,7 @@ public class TokenContractTest {
 	 }
 	 
 	 @Test
-	 public void getSymbolTest() {
+	 public void symbolTest() {
 		 
 		 Address ad = new Address();
 		 TokenContract tk = new TokenContract(ad);
@@ -45,7 +45,7 @@ public class TokenContractTest {
 		 
 		 tk.setSymbol(symbol);
 		 
-		 assertEquals(symbol, tk.getSymbol());
+		 assertEquals(symbol, tk.symbol());
 		 
 	 }
 	 
@@ -75,6 +75,13 @@ public class TokenContractTest {
 		 
 	 }
 	 
+	/* @Test
+	 public void getBalancesTest() {
+		 
+		 Address ad = new Address();
+		 TokenContract tk = new TokenContract(ad); 
+	 }*/
+	 
 	 
 	 @Test
 	 public void addOwnerTest() {
@@ -89,6 +96,45 @@ public class TokenContractTest {
 		 
 	 }
 		
+	 @Test
+	 public void numOwnersTest() {
+		 
+		 
+		 Address ad = new Address();
+		 Address ad1 = new Address();
+		 
+		 ad.generateKeyPair();
+		 ad1.generateKeyPair();
+		 
+		 TokenContract tk = new TokenContract(ad);
+		 TokenContract tk1 = new TokenContract(ad1);
+
+		 double balance = 20.0;
+		 
+		 tk.addOwner(ad.getPK(), balance);
+		 tk.addOwner(ad1.getPK(), balance);
+		 
+		 assertEquals(2, tk.numOwners());
+		 
+		 
+	 }
+	 
+	 @Test
+	 public void balanceOfTest() {
+		 
+		 Address ad = new Address();
+		 Address address = new Address();
+		 
+		 TokenContract tk = new TokenContract(ad);
+		 
+		 double balance = 20.0;
+		 tk.addOwner(ad.getPK(), balance);
+		 
+		 assertEquals(balance,tk.balanceOf(ad.getPK()), 0.0);
+		 
+	 }
+	 
+	 
 	/* @Test
 	    public void payable_test() {
 

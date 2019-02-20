@@ -35,13 +35,6 @@ public class TokenContract {
 	}
 	
 	
-	public String getSymbol() {
-		
-		return this.symbol;
-		
-	}
-	
-	
 	public PublicKey getOwnerPK() {
 		
 		return this.ownerPK;
@@ -88,6 +81,13 @@ public class TokenContract {
 	}
 	
 	
+	public String symbol() {
+		
+		return this.symbol;
+		
+	}
+	
+	
 	public void addOwner(PublicKey PK, double balance) {
 		
 		if(this.getBalances().containsKey(PK)) {
@@ -102,12 +102,44 @@ public class TokenContract {
 		}
 		
 	}
+
+	
+	public int numOwners() {
+		
+		int total = 0;
+		
+		for(PublicKey key : this.getBalances().keySet()) {
+			
+			total += 1;
+			
+		}
+		
+		return total;
+		
+	}
+
+	
+	public double balanceOf(PublicKey PK) {
+		
+		if(this.getBalances().containsKey(PK)) {
+			
+			return this.getBalances().get(PK);
+		
+		}
+		else {
+			
+			return 0.0;
+			
+		}
+		
+	}
+	
 	
 	
 	@Override
 	public String toString() {
 		
-		return "\n" + "name = " + this.getName() + "\n" + "symbol = " + this.getSymbol() + "\n" + "totalSupply = " + this.totalSupply() + "\n" + "owner PK = " + this.getOwnerPK().hashCode();
+		return "\n" + "name = " + this.getName() + "\n" + "symbol = " + this.symbol() + "\n" + "totalSupply = " + this.totalSupply() + "\n" + "owner PK = " + this.getOwnerPK().hashCode();
 		
 	}
 	
