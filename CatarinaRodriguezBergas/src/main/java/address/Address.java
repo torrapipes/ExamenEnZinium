@@ -78,7 +78,7 @@ public class Address {
 	@Override
 	public String toString() {
 		
-		return "\n" + "PK = " + this.getPK().hashCode() + "\n" + "Balance = " + this.getBalance();
+		return "\n" + "PK = " + this.getPK().hashCode() + "\n" + "Balance = " + this.getBalance() + " EZI";
 		
 	}
 	
