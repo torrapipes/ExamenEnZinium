@@ -14,6 +14,7 @@ public class TokenContractTest {
 	 public void constructortest() {
 		 
 		 Address ad = new Address();
+		 ad.generateKeyPair();
 		 TokenContract tk = new TokenContract(ad);
 		 
 		 assertNotNull(tk);
@@ -25,6 +26,7 @@ public class TokenContractTest {
 	 public void getNameTest() {
 		 
 		 Address ad = new Address();
+		 ad.generateKeyPair();
 		 TokenContract tk = new TokenContract(ad);
 		 
 		 String name = "Mr Potato";
@@ -39,6 +41,7 @@ public class TokenContractTest {
 	 public void symbolTest() {
 		 
 		 Address ad = new Address();
+		 ad.generateKeyPair();
 		 TokenContract tk = new TokenContract(ad);
 		 
 		 String symbol = "Pot";
@@ -54,6 +57,7 @@ public class TokenContractTest {
 	 public void TotalSupplyTest() {
 		 
 		 Address ad = new Address();
+		 ad.generateKeyPair();
 		 TokenContract tk = new TokenContract(ad);
 		 
 		 double sup = 22.2;
@@ -69,6 +73,7 @@ public class TokenContractTest {
 	 public void getOwnerPKTest() {
 		 
 		 Address ad = new Address();
+		 ad.generateKeyPair();
 		 TokenContract tk = new TokenContract(ad);
 		 
 		 assertEquals(ad.getPK(), tk.getOwnerPK());
@@ -87,6 +92,7 @@ public class TokenContractTest {
 	 public void addOwnerTest() {
 		 
 		 Address ad = new Address();
+		 ad.generateKeyPair();
 		 TokenContract tk = new TokenContract(ad);
 		 
 		 double balance = 20.0;
@@ -123,7 +129,9 @@ public class TokenContractTest {
 	 public void balanceOfTest() {
 		 
 		 Address ad = new Address();
+		 ad.generateKeyPair();
 		 Address address = new Address();
+		 address.generateKeyPair();
 		 
 		 TokenContract tk = new TokenContract(ad);
 		 
@@ -131,6 +139,27 @@ public class TokenContractTest {
 		 tk.addOwner(ad.getPK(), balance);
 		 
 		 assertEquals(balance,tk.balanceOf(ad.getPK()), 0.0);
+		 assertEquals(0.0, tk.balanceOf(address.getPK()), 0.0);
+		 
+	 }
+	 
+	 
+	 @Test
+	 public void transferTest() {
+		 
+		 Address direccionO = new Address();
+		 direccionO.generateKeyPair();
+		 Address direccionD = new Address();
+		 direccionD.generateKeyPair();
+		 TokenContract contract = new TokenContract(direccionO);
+		 
+		 contract.addOwner(direccionO.getPK(), 10);
+		 
+		 double tokens = 5;
+		 
+		 contract.transfer(direccionD.getPK(), tokens);
+		 
+		 assertEquals(tokens, contract.getBalances().get(contract.getOwnerPK()) , 0.0);
 		 
 	 }
 	 

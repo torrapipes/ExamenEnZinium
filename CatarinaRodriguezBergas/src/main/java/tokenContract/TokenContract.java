@@ -135,6 +135,24 @@ public class TokenContract {
 	}
 	
 	
+	public void transfer(PublicKey PK, double tokens) {
+		
+			if(tokens > this.getBalances().get(this.getOwnerPK())) {
+				;
+			}
+			else {
+				
+				double balance = this.balanceOf(PK);
+				
+				double tokensPKorigen = this.getBalances().get(this.getOwnerPK()) - tokens;
+				double tokensPKdestino = balance + tokens;
+				
+				this.getBalances().put(this.getOwnerPK(), tokensPKorigen);
+				this.getBalances().put(PK, tokensPKdestino);
+				
+			}
+
+	}
 	
 	@Override
 	public String toString() {
