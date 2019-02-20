@@ -73,6 +73,15 @@ public class Address {
 		this.setSK(GenSig.generateKeyPair().getPrivate());
 		
 	}
+
+
+	@Override
+	public String toString() {
+		
+		return "\n" + "PK = " + this.getPK().hashCode() + "\n" + "Balance = " + this.getBalance();
+		
+	}
+	
 	
 	
 	
