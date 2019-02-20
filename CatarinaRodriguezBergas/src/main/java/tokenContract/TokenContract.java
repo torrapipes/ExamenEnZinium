@@ -1,6 +1,8 @@
 package tokenContract;
 
 import java.security.PublicKey;
+import java.util.HashMap;
+import java.util.Map;
 
 import address.Address;
 
@@ -12,6 +14,7 @@ public class TokenContract {
 	private String symbol = null;
 	private double totalSupply = 0d;
 	private PublicKey ownerPK = null;
+	private Map<PublicKey, Double> balances = new HashMap<PublicKey, Double>();
 	
 	
 	// Constructor
@@ -19,7 +22,7 @@ public class TokenContract {
 	public TokenContract(Address rick) {
 		
 		this.ownerPK = rick.getPK();
-		
+
 	}
 	
 	
@@ -39,16 +42,16 @@ public class TokenContract {
 	}
 	
 	
-	public double getTotalSupply() {
+	public PublicKey getOwnerPK() {
 		
-		return this.totalSupply;
+		return this.ownerPK;
 		
 	}
 	
 	
-	public PublicKey getOwnerPK() {
+	public Map<PublicKey, Double> getBalances() {
 		
-		return this.ownerPK;
+		return this.balances;
 		
 	}
 	
@@ -75,11 +78,36 @@ public class TokenContract {
 		
 	}
 
-
+	
+	// Métodos
+	
+	public double totalSupply() {
+		
+		return this.totalSupply;
+		
+	}
+	
+	
+	public void addOwner(PublicKey PK, double balance) {
+		
+		if(this.getBalances().containsKey(PK)) {
+			
+			System.out.println("Esta clave pública ya existe, introduzca otra clave pública");
+			
+		}
+		else {
+			
+			this.balances.put(PK, balance);
+			
+		}
+		
+	}
+	
+	
 	@Override
 	public String toString() {
 		
-		return "\n" + "name = " + this.getName() + "\n" + "symbol = " + this.getSymbol() + "\n" + "totalSupply = " + this.getTotalSupply() + "\n" + "owner PK = " + this.getOwnerPK().hashCode();
+		return "\n" + "name = " + this.getName() + "\n" + "symbol = " + this.getSymbol() + "\n" + "totalSupply = " + this.totalSupply() + "\n" + "owner PK = " + this.getOwnerPK().hashCode();
 		
 	}
 	

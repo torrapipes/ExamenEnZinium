@@ -1,6 +1,7 @@
 package tokenContractTest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
@@ -9,7 +10,17 @@ import tokenContract.TokenContract;
 
 public class TokenContractTest {
 
-	
+	 @Test
+	 public void constructortest() {
+		 
+		 Address ad = new Address();
+		 TokenContract tk = new TokenContract(ad);
+		 
+		 assertNotNull(tk);
+		 
+	 }
+	 
+	 
 	 @Test
 	 public void getNameTest() {
 		 
@@ -40,7 +51,7 @@ public class TokenContractTest {
 	 
 	 
 	 @Test
-	 public void getTotalSupplyTest() {
+	 public void TotalSupplyTest() {
 		 
 		 Address ad = new Address();
 		 TokenContract tk = new TokenContract(ad);
@@ -49,7 +60,32 @@ public class TokenContractTest {
 		 
 		 tk.setTotalSupply(sup);
 		 
-		 assertEquals(sup, tk.getTotalSupply(), 0.0);
+		 assertEquals(sup, tk.totalSupply(), 0.0);
+		 
+	 }
+	 
+	 
+	 @Test
+	 public void getOwnerPKTest() {
+		 
+		 Address ad = new Address();
+		 TokenContract tk = new TokenContract(ad);
+		 
+		 assertEquals(ad.getPK(), tk.getOwnerPK());
+		 
+	 }
+	 
+	 
+	 @Test
+	 public void addOwnerTest() {
+		 
+		 Address ad = new Address();
+		 TokenContract tk = new TokenContract(ad);
+		 
+		 double balance = 20.0;
+		 tk.addOwner(ad.getPK(), balance);
+		 
+		 assertEquals(balance, tk.getBalances().get(ad.getPK()), 0.0);
 		 
 	 }
 		
