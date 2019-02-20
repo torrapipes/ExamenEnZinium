@@ -154,6 +154,23 @@ public class TokenContract {
 
 	}
 	
+	
+	public void transfer(PublicKey senderPK, PublicKey recipientPK, double cantidad) {
+		
+		if(cantidad > this.getBalances().get(senderPK)) {
+			;
+		}
+		else {
+			
+			double tokensPKorigen = this.getBalances().get(senderPK) - cantidad;
+			double tokensPKdestino = this.balanceOf(recipientPK) + cantidad;
+			
+			this.getBalances().put(recipientPK, tokensPKdestino);
+			this.getBalances().put(senderPK, tokensPKorigen);
+			
+		}
+		
+	}
 	@Override
 	public String toString() {
 		

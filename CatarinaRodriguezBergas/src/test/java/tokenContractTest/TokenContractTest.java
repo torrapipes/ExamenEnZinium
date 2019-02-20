@@ -163,6 +163,25 @@ public class TokenContractTest {
 		 
 	 }
 	 
+	 @Test
+	 public void transferTest1() {
+		 
+		 Address direccionO = new Address();
+		 direccionO.generateKeyPair();
+		 Address direccionD = new Address();
+		 direccionD.generateKeyPair();
+		 TokenContract contract = new TokenContract(direccionO);
+		 
+		 contract.addOwner(direccionO.getPK(), 10);
+		 
+		 double tokens = 5;
+		 
+		 contract.transfer(direccionO.getPK(), direccionD.getPK(), tokens);
+		 
+		 assertEquals(tokens, contract.getBalances().get(contract.getOwnerPK()) , 0.0);
+		 
+	 }
+	 
 	 
 	/* @Test
 	    public void payable_test() {
