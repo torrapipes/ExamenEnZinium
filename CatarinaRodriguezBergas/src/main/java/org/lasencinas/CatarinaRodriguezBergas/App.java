@@ -1,6 +1,7 @@
 package org.lasencinas.CatarinaRodriguezBergas;
 
 import address.Address;
+import tokenContract.TokenContract;
 
 /**
  * Contratos inteligentes con enZinium.
@@ -63,5 +64,39 @@ public class App {
                                   "==============="        );
         System.out.println(jen.toString());         
 
+        
+        /**
+         * Crea una contrato inteligente de tipo TokenContract 
+         * en nuestro sistema para que Rick pueda vender 100 
+         * entradas para el concierto de "los Ricknillos". 
+         *  
+         * El nombre del token (las entradas) es Ricknillos.
+         * Su simbolo es RNiLL.
+         * 
+         * El propietario del contrato es Rick. Asigna su Public Key
+         * a la propiedad owner del contrato mediante el contructor
+         * de TokenContract.
+         * 
+         * En la clase TokenContract programa las funciones a utilizar en 
+         * el metodo toString():
+         * 
+         * name() 
+         * @return devuelve el nombre del token de forma human-readable (p.e., “US Dollars”).
+         * 
+         * symbol()
+         * @return el nombre del símbolo del token de forma human-readable (p.e., “USD”).
+         * 
+         * totalSupply()
+         * @return el total de unidades de este token que actualmente existen.
+         */
+
+        TokenContract ricknillos = new TokenContract(rick);
+        ricknillos.setName("Ricknillos");
+        ricknillos.setSymbol("RNiLL");
+        ricknillos.setTotalSupply(100);
+
+        System.out.println("\n" + "Contrato de los Ricknillos" + "\n" + 
+                                  "=========================="        );
+        System.out.println(ricknillos.toString());
     }
 }
